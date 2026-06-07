@@ -2,11 +2,6 @@ using VerstaOrderPrjoect.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseKestrel(options =>
-{
-    options.ListenLocalhost(5001);
-});
-
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
