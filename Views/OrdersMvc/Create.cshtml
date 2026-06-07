@@ -1,0 +1,54 @@
+@model VerstaOrderPrjoect.ViewModels.OrderCreateViewModel
+@{
+    ViewData["Title"] = "Создать заказ";
+}
+
+<h1>Создать заказ</h1>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="text-danger">Пожалуйста, исправьте ошибки в форме.</div>
+}
+
+<form asp-action="Create" method="post">
+    <div>
+        <label class="form-label">Город отправителя</label>
+        <input asp-for="CitySender" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.CitySender)</span>
+    </div>
+
+    <div>
+        <label class="form-label">Адрес отправителя</label>
+        <input asp-for="AddressSender" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.AddressSender)</span>
+    </div>
+
+    <div>
+        <label class="form-label">Город получателя</label>
+        <input asp-for="CityRecipient" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.CityRecipient)</span>
+    </div>
+
+    <div>
+        <label class="form-label">Адрес получателя</label>
+        <input asp-for="AddressRecipient" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.AddressRecipient)</span>
+    </div>
+
+    <div>
+        <label class="form-label">Вес (кг)</label>
+        <input asp-for="Weight" class="form-control" step="0.01" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Weight)</span>
+    </div>
+
+    <div>
+        <label class="form-label">Дата самовывоза</label>
+        <input asp-for="PickupDate" type="date" class="form-control" value="@(Model.PickupDate.ToString("yyyy-MM-dd"))" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.PickupDate)</span>
+    </div>
+
+    <div style="margin-top:10px;">
+        <button type="submit" class="btn">Сохранить</button>
+        <a class="btn btn-secondary" href="@Url.Action("Index")">Отмена</a>
+    </div>
+</form>

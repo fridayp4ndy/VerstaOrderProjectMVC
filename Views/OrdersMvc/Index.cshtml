@@ -1,0 +1,47 @@
+@model VerstaOrderPrjoect.ViewModels.OrdersIndexViewModel
+@{
+    ViewData["Title"] = "Список заказов";
+}
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <h1>Список заказов</h1>
+    <a class="btn" href="@Url.Action("Create")">Создать новый</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Город отправителя</th>
+            <th>Адрес отправителя</th>
+            <th>Город получателя</th>
+            <th>Адрес получателя</th>
+            <th>Вес</th>
+            <th>Дата самовывоза</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Orders != null)
+    {
+        foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.citySender</td>
+                <td>@item.addressSender</td>
+                <td>@item.cityRecipient</td>
+                <td>@item.addressRecipient</td>
+                <td>@item.weight</td>
+                <td>@item.pickupDate.ToString("yyyy-MM-dd")</td>
+                <td><a href="@Url.Action("Details", new { id = item.id })">Просмотр</a></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+<div>
+    <a class="btn" href="@Url.Action("Index", new { page = Model.Page - 1 })" @(Model.Page <= 1 ? "style=\"opacity:0.5;pointer-events:none\"" : "")>Previous</a>
+    <a class="btn btn-secondary" href="@Url.Action("Index", new { page = Model.Page + 1 })" @(Model.Page >= Model.TotalPages ? "style=\"opacity:0.5;pointer-events:none\"" : "")>Next</a>
+</div>

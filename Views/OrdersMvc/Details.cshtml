@@ -1,0 +1,30 @@
+@model VerstaOrderPrjoect.Models.Order
+@{
+    ViewData["Title"] = "Детали заказа";
+}
+
+<h1>Детали заказа</h1>
+
+<div>
+    <strong>Id:</strong> @Model.Id
+</div>
+<div>
+    <strong>Город отправителя:</strong> @Model.CitySender
+</div>
+<div>
+    <strong>Адрес отправителя:</strong> @Model.AddressSender
+</div>
+<div>
+    <strong>Город получателя:</strong> @Model.CityRecipient
+</div>
+<div>
+    <strong>Адрес получателя:</strong> @Model.AddressRecipient
+</div>
+<div>
+    <strong>Вес:</strong> @Model.Weight
+</div>
+<div>
+    <strong>Дата самовывоза:</strong> @Model.PickupDate.ToString("yyyy-MM-dd")
+</div>
+
+<div style="margin-top:12px;"><a class="btn btn-secondary" href="@Url.Action("Index")">Назад</a></div>
